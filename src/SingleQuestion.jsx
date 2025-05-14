@@ -1,8 +1,7 @@
-import { useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
-const SingleQuestion = ({ title, info }) => {
-  const [showInfo, setShowInfo] = useState(false);
+const SingleQuestion = ({ id, title, info, activeId, toggleQuestion }) => {
+  const isActiveId = id === activeId;
   return (
     <article className="question">
       <header>
@@ -10,12 +9,12 @@ const SingleQuestion = ({ title, info }) => {
         <button
           type="button"
           className="question-btn"
-          onClick={() => setShowInfo(!showInfo)}
+          onClick={() => toggleQuestion(id)}
         >
-          {showInfo ? <AiOutlineMinus /> : <AiOutlinePlus />}
+          {isActiveId ? <AiOutlineMinus /> : <AiOutlinePlus />}
         </button>
       </header>
-      {showInfo && <p>{info}</p>}
+      {isActiveId && <p>{info}</p>}
     </article>
   );
 };
